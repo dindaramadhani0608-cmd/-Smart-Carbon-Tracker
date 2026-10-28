@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Smart Carbon Tracker - Hasil Penelitian</title>
+
+<style>
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #f1f7f2;
+    color: #263b30;
+}
+
+header {
+    background: #176b45;
+    color: white;
+    padding: 35px 20px;
+    text-align: center;
+}
+
+header h1 {
+    margin: 0;
+    font-size: 28px;
+}
+
+header p {
+    line-height: 1.6;
+}
+
+nav {
+    background: #104d32;
+    padding: 15px;
+    text-align: center;
+}
+
+nav a {
+    color: white;
+    text-decoration: none;
+    margin: 0 10px;
+    font-size: 14px;
+}
+
+.container {
+    max-width: 1000px;
+    margin: auto;
+    padding: 20px;
+}
+
+h2 {
+    color: #176b45;
+}
+
+.subtitle {
+    color: #65766b;
+    line-height: 1.6;
+}
+
+.cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(145px, 1fr));
+    gap: 15px;
+}
+
+.card {
+    background: white;
+    border-radius: 14px;
+    padding: 20px;
+    margin-bottom: 18px;
+    box-shadow: 0 4px 12px #0000000d;
+}
+
+.icon {
+    font-size: 30px;
+}
+
+.number {
+    color: #198754;
+    font-size: 25px;
+    font-weight: bold;
+    margin: 12px 0;
+}
+
+.small {
+    font-size: 13px;
+    color: #65766b;
+    line-height: 1.6;
+}
+
+.chart-row {
+    margin: 22px 0;
+}
+
+.chart-label {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+    margin-bottom: 8px;
+    font-size: 14px;
+}
+
+.bar-background {
+    height: 20px;
+    background: #e2ebe4;
+    border-radius: 20px;
+    overflow: hidden;
+}
+
+.bar {
+    height: 100%;
+    width: 0;
+    background: #23965c;
+    border-radius: 20px;
+}
+
+.result-box {
+    padding: 20px;
+    border-radius: 12px;
+    background: #e3f5e8;
+    line-height: 1.7;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    background: white;
+}
+
+th, td {
+    padding: 12px 8px;
+    border-bottom: 1px solid #e0e8e2;
+    text-align: left;
+    font-size: 14px;
+}
+
+th {
+    background: #e3f5e8;
+}
+
+.table-wrap {
+    overflow-x: auto;
+}
+
+footer {
+    background: #104d32;
+    color: white;
+    padding: 22px;
+    text-align: center;
+    font-size: 13px;
+}
+
+@media (max-width: 450px) {
+    header h1 {
+        font-size: 23px;
+    }
+
+    nav a {
+        display: inline-block;
+        margin: 6px;
+    }
+
+    .container {
+        padding: 12px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+    <h1>🌱 Smart Carbon Tracker🌱</h1>
+    <p>Hasil Penelitian Jejak Karbon Kelompok 3</p>
+    <p>Analisis Penggunaan Listrik dan Konsumsi Makanan Secara Individu</p>
+</header>
+
+<nav>
+    <a href="#dashboard">Dashboard</a>
+    <a href="#listrik">Energi</a>
+    <a href="#makanan">Makanan</a>
+    <a href="#kesimpulan">Kesimpulan</a>
+</nav>
+
+<main class="container">
+
+    <section id="dashboard">
+        <h2>📊 Ringkasan Penelitian</h2>
+
+        <p class="subtitle">
+            Website ini menyajikan ringkasan hasil penelitian rata-rata individu
+            mengenai penggunaan energi dan kebiasaan konsumsi
+            makanan.
+        </p>
+
+        <div class="cards">
+
+            <div class="card">
+                <div class="icon">👥</div>
+                <p>Responden Survei</p>
+                <div class="number" id="responden">273</div>
+                <p class="small">Jumlah responden</p>
+            </div>
+
+            <div class="card">
+                <div class="icon">❄️</div>
+                <p>Penggunaan AC</p>
+                <div class="number" id="ac">9 jam</div>
+                <p class="small">Rata-rata per hari</p>
+            </div>
+
+            <div class="card">
+                <div class="icon">💡</div>
+                <p>Jumlah Lampu</p>
+                <div class="number" id="lampu">8</div>
+                <p class="small"> jumlah lampu </p>
+            </div>
+
+            <div class="card">
+                <div class="icon">🌍</div>
+                <p>Estimasi Emisi</p>
+                <div class="number" id="total">-</div>
+                <p class="small">kg CO₂e per hari, berdasarkan asumsi</p>
+            </div>
+
+        </div>
+    </section>
+
+    <section class="card" id="listrik">
+        <h2>⚡ Hasil Penggunaan Energi</h2>
+
+        <p class="subtitle">
+            Ringkasan penggunaan AC dan lampu berdasarkan
+            data penelitian. Angka berikut masih berupa contoh.
+        </p>
+
+        <div class="chart-row">
+            <div class="chart-label">
+                <span>❄️ Penggunaan AC</span>
+                <strong id="labelAC">9 jam/hari</strong>
+            </div>
+            <div class="bar-background">
+                <div class="bar" id="barAC"></div>
+            </div>
+        </div>
+
+        <div class="chart-row">
+            <div class="chart-label">
+                <span>💡 Penggunaan Lampu</span>
+                <strong id="labelLampu">10 jam/hari</strong>
+            </div>
+            <div class="bar-background">
+                <div class="bar" id="barLampu"></div>
+            </div>
+        </div>
+
+        <div class="chart-row">
+            <div class="chart-label">
+                <span>🔌 Estimasi Emisi Listrik</span>
+                <strong id="labelListrik">-</strong>
+            </div>
+            <div class="bar-background">
+                <div class="bar" id="barListrik"></div>
+            </div>
+        </div>
+    </section>
+
+    <section class="card" id="makanan">
+        <h2>🍽️ Hasil Survei Konsumsi Makanan</h2>
+
+        <p class="subtitle">
+            Frekuensi konsumsi makanan responden dalam seminggu.
+            Angka contoh ini perlu diganti sesuai hasil survei asli.
+        </p>
+
+        <div class="table-wrap">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Jenis Konsumsi</th>
+                        <th>Frekuensi Contoh</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    <tr>
+                        <td>🥚 Telur</td>
+                        <td id="telur">3 kali/minggu</td>
+                    </tr>
+
+                    <tr>
+                        <td>🥛 Susu</td>
+                        <td id="susu">3 kali/minggu</td>
+                    </tr>
+
+                    <tr>
+                        <td>🐟 Ikan</td>
+                        <td id="ikan">3 kali/minggu</td>
+                    </tr>
+
+                    <tr>
+                        <td>🧀 Olahan susu</td>
+                        <td id="olahan">3 kali/minggu</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <p class="small">
+            Frekuensi konsumsi saja belum cukup untuk menghitung
+            emisi makanan secara akurat. Jumlah atau berat porsi
+            dan faktor emisi setiap makanan juga diperlukan.
+        </p>
+    </section>
+
+    <section class="card">
+        <h2>📈 Analisis Hasil</h2>
+
+        <div class="result-box" id="analisis">
+            Data contoh ditampilkan sebagai ilustrasi.
+            Masukkan hasil penelitian yang sebenarnya sebelum
+            menggunakan analisis ini sebagai kesimpulan.
+        </div>
+    </section>
+
+    <section class="card" id="kesimpulan">
+        <h2>🌿 Kesimpulan Penelitian</h2>
+
+        <p>
+            Smart Carbon Tracker digunakan untuk membantu
+            memahami hubungan antara penggunaan energi,
+            kebiasaan konsumsi makanan, dan jejak karbon.
+        </p>
+
+        <p>
+            Hasil penelitian dapat digunakan untuk meningkatkan
+            kesadaran tentang penghematan listrik, penggunaan AC
+            secara bijak, dan pola konsumsi yang lebih ramah
+            lingkungan.
+        </p>
+
+        <p class="small">
+            Catatan: Angka di dashboard saat ini merupakan data
+            demonstrasi, bukan hasil survei sekolah yang nyata.
+            Total emisi hanya dapat dihitung secara bertanggung
+            jawab setelah tersedia data terukur dan faktor emisi
+            yang sesuai. Frekuensi konsumsi makanan tidak
+            dijumlahkan langsung menjadi emisi karbon.
+        </p>
+    </section>
+
+</main>
+
+<footer>
+    <p>🌱 Smart Carbon Tracker 2026</p>
+    <p>Track Carbon, Protect Our Future!</p>
+    <p>SMAS YADIKA 8 JATIMULYA</p>
+</footer>
+
+<script>
+
+/*
+DATA DEMONSTRASI.
+Ganti nilai di bagian ini dengan hasil penelitianmu. 
+Jangan gunakan data contoh sebagai hasil penelitian asli.
+*/
+const dataPenelitian = {
+    responden: 273,
+
+    acJamPerHari: 9,
+    jumlahLampu: 8,
+    lampuJamPerHari: 10,
+
+    telurKaliPerMinggu: 3,
+    susuKaliPerMinggu: 3,
+    ikanKaliPerMinggu: 3,
+    olahanSusuKaliPerMinggu: 3,
+
+    // Asumsi contoh; ganti dengan data dan faktor tervalidasi.
+    dayaACKW: 0.8,
+    dayaLampuKW: 0.01,
+    faktorEmisiListrik: 0.56
+};
+
+function tampilkanHasil() {
+    const d = dataPenelitian;
+
+    const emisiAC =
+        d.acJamPerHari *
+        d.dayaACKW *
+        d.faktorEmisiListrik;
+
+    const emisiLampu =
+        d.jumlahLampu *
+        d.lampuJamPerHari *
+        d.dayaLampuKW *
+        d.faktorEmisiListrik;
+
+    const totalListrik = emisiAC + emisiLampu;
+
+    const format = n => n.toLocaleString("id-ID", {
+        maximumFractionDigits: 2
+    });
+
+    document.getElementById("responden").textContent =
+        d.responden;
+
+    document.getElementById("ac").textContent =
+        d.acJamPerHari + " jam";
+
+    document.getElementById("lampu").textContent =
+        d.jumlahLampu;
+
+    document.getElementById("total").textContent =
+        format(totalListrik) + " kg";
+
+    document.getElementById("labelAC").textContent =
+        d.acJamPerHari + " jam/hari";
+
+    document.getElementById("labelLampu").textContent =
+        d.lampuJamPerHari + " jam/hari";
+
+    document.getElementById("labelListrik").textContent =
+        format(totalListrik) + " kg CO₂e/hari";
+
+    document.getElementById("telur").textContent =
+        d.telurKaliPerMinggu + " kali/minggu";
+
+    document.getElementById("susu").textContent =
+        d.susuKaliPerMinggu + " kali/minggu";
+
+    document.getElementById("ikan").textContent =
+        d.ikanKaliPerMinggu + " kali/minggu";
+
+    document.getElementById("olahan").textContent =
+        d.olahanSusuKaliPerMinggu + " kali/minggu";
+
+    document.getElementById("barAC").style.width =
+        Math.min(d.acJamPerHari / 24 * 100, 100) + "%";
+
+    document.getElementById("barLampu").style.width =
+        Math.min(d.lampuJamPerHari / 24 * 100, 100) + "%";
+
+    const maksimum = Math.max(totalListrik, 1);
+
+    document.getElementById("barListrik").style.width =
+        (totalListrik / maksimum * 100) + "%";
+
+    document.getElementById("analisis").textContent =
+        "Berdasarkan data diatas, estimasi emisi dari " +
+        "penggunaan AC dan lampu adalah " +
+        format(totalListrik) +
+        " kg CO₂e per hari. Angka ini belum mewakili total " +
+        "jejak karbon sekolah dan belum memasukkan emisi " +
+        "makanan. Ganti data contoh dan validasi faktor emisi " +
+        "sebelum menarik kesimpulan penelitian.";
+}
+
+tampilkanHasil();
+
+</script>
+
+</body>
+</html>
